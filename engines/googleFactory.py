@@ -35,8 +35,7 @@ class GoogleFactory(EngineFactory):
                 url = 'https://search.disconnect.me/searchTerms/search?start=nav&option=Web&query='+query+'&ses=Google&location_option=US&nextDDG=%2Fsearch%3Fq%3D%26hl%3Den%26start%3D'+str(first)+'%26sa%3DN&showIcons=false&filterIcons=none&js_enabled=1&source=None'
                 urls_list.append(url)
         return urls_list
-    def extractSearchResults(self,html):
-        print html
+    def extractSearchResults(self,html.url):
         '''
         results = list()
         soup = BeautifulSoup(html)

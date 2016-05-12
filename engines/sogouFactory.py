@@ -17,7 +17,7 @@ class SogouFactory(EngineFactory):
         self.engine_domain = "http://www.sogou.com/"
         self.weight = 5
         self.results_num = 100
-        self.page_num = 1
+        self.page_num = 10
     def urlGenerator(self,query):
         urls_list = list()
         try:
@@ -31,7 +31,7 @@ class SogouFactory(EngineFactory):
                 url = self.engine_domain+"web?query="+query+"&page="+str(p)+"&ie=utf8"
                 urls_list.append(url)
         return urls_list
-    def extractSearchResults(self,html):
+    def extractSearchResults(self,html,url):
         #print html
         search_results = list()
         soup = BeautifulSoup(html)

@@ -17,7 +17,8 @@ class YoudaoFactory(EngineFactory):
         self.engine_domain = "http://www.youdao.com/"
         self.weight = 5
         self.results_num = 100
-        self.page_num = 1
+        self.page_num = 10
+        self.results_per_page = 10
     def urlGenerator(self,query):
         urls_list = list()
         try:
@@ -28,19 +29,20 @@ class YoudaoFactory(EngineFactory):
         else:
             urls = list()
             for p in range(1, self.page_num+1):
-                url = self.engine_domain+"web?query="+query+"&page="+str(p)+"&ie=utf8"
+                #url = self.engine_domain+"web?query="+query+"&page="+str(p)+"&ie=utf8"
+                start = (p-1)*self.results_per_page
+                url = self.engine_domain+"search?q="+query+"&start="+str(start)+"&ue=utf8&keyfrom=web.page"+str(p)+"&lq="+query+"&timesort=0"
                 urls_list.append(url)
         return urls_list
-    def extractSearchResults(self,html):
-        #print html
+    def extractSearchResults(self,html,url):
         search_results = list()
         soup = BeautifulSoup(html)
         try:
-            ul = soup.find_all('div',class_='results')
-            lis = ul[0].children
+            ol = soup.find_all('ol',id='results')
+            lis = ol[0].children
 
         except:
-            logging_error("fail to extract the page:%s", url)
+            logging.error("fail to extract the page:%s",url )
         else:
             for li in lis:
                 search_result = SearchResult()

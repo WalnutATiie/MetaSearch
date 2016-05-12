@@ -68,7 +68,7 @@ class AccessUrls:
     def task(self, url, try_idx, extractSearchResults):
         html = self.requestUrl(url,try_idx)
         if html!= None:
-            extractSearchResults(html)
+            extractSearchResults(html,url)
     @staticmethod
     def taskGenerator(self,urls,extractSearchResults):
         try:
