@@ -3,7 +3,7 @@ from query.query_engines import AccessUrls
 from engines.youdaoFactory import YoudaoFactory
 import sys
 query = sys.argv[1]
-youdao = YoudaoFactory()
+youdao = YoudaoFactory()#test
 youdao_urls = youdao.urlGenerator(query)
 sogou = SogouFactory()
 sogou_urls = sogou.urlGenerator(query)
